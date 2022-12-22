@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration form</title>
+    <style type="text/css">
+    body {
+            background-image: url(img1.png);
+            background-position:center;
+            background-size:cover;
+            font-family:sana-serif;
+            padding: 10px 50px;
+            margin-top:40px;
+    }
+    .formdesign {
+        font-size: 20px;
+
+    }
+    .regform{
+            width: 800px;
+            background-color:rgb(0,0,0,6);
+            margin:auto;
+            color:#FFFFFF;
+            padding:10px 0px 10px 0px;
+            text-align:center;
+            border: radius 15px 15px 0px 0px;
+    }
+    .main{
+            background-color:rgb(0,0,0,0.5);
+            width:800px;
+            margin:auto;
+    }
+    .name{
+            padding:10px;
+            color:white;
+            font-size:18px;
+            font-weight:700;
+    }
+    .name input {
+        width: 50%;
+        padding: 12px 20px;
+        border: 1px black;
+        margin: 14px;
+        border-radius: 4px;
+        font-size: 15px;
+    }
+    .radio{
+            display: inline-block;
+            padding-right: 70px;
+            font-size: 25px;
+            margin-left: 25px;
+            margin-top: 15px;
+            color: white;
+        }
+        .radio input{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            outline: none;
+        }
+    .eror {
+        color: red;
+    }
+
+    .button{
+            background-color: #3BAF9F;
+            display: block;
+            margin: 20px 0px 0px 20px;
+            text-align: center;
+            border-radius: 12px;
+            border: 2px solid #366473;
+            padding: 14px 110px;
+            outline: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.25px;
+        }
+        .button:hover{
+            background-color: #5390F5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="regform"><h1> Registration Form</h1></div>
+    <div class="main">
+        <form aciton ="/myaction.php" name="myForm" onsubmit="return VForm()" method="post">
+            <div class="name" id="name">
+                Name: <input type="text" name="fname" required><b><span class="eror"> </span></b>
+            </div>
+
+            <div class="name" id="email">
+                Email: <input type="email" name="femail" required><b><span class="eror"> </span></b>
+            </div>
+
+            <div class="name" id="phone">
+                Phone: <input type="phone" name="fphone" required><b><span class="eror"></span></b>
+            </div>
+
+            <div class="name" id="pass">
+                Password: <input type="password" name="fpass" required><b><span class="eror"></span></b>
+            </div>
+
+            <div class="name" id="cpass">
+                Confirm Password: <input type="password" name="fcpass" required><b><span class="eror"></span></b>
+            </div>
+
+            <div>
+                <h2 id="student">Are you beginner ?</h2>
+
+                <label class="radio">
+                    <input class="radio-one" type="radio" checked="checked" name="">
+                    <span class="checkmark"></span>
+                    Yes
+                </label>
+                <label class="radio">
+                    <input class="radio-two" type="radio" name="">
+                    <span class="checkmark"></span>
+                    No
+                </label>
+            </div>
+
+            <input class="button" type="submit" value="Submit">
+
+        </form>
+    </div>
+</body>
+<script>
+    function clearErrors(){
+
+errors = document.getElementsByClassName('eror');
+for(let item of errors)
+{
+    item.innerHTML = "";
+}
+
+
+}
+function serror(id, error){
+element = document.getElementById(id);
+element.getElementsByClassName('eror')[0].innerHTML = error;
+
+}
+
+function VForm(){
+var returnval = true;
+clearErrors();
+
+var name = document.forms['myForm']["fname"].value;
+if (name.length<5){
+    serror("name", "*Length of name is too short");
+    returnval = false;
+}
+
+if (nameength == 0){
+    serror("name", "*Length of name cannot be zero!");
+    returnval = false;
+}
+
+var email = document.forms['myForm']["femail"].value;
+if (email.length>15){
+    serror("email", "*Email length is too long");
+    returnval = false;
+}
+
+var phone = document.forms['myForm']["fphone"].value;
+if (phone.length != 10){
+    serror("phone", "*Phone number should be of 10 digits!");
+    returnval = false;
+}
+
+var password = document.forms['myForm']["fpass"].value;
+if (password.length < 6){
+
+    serror("pass", "*Password should be atleast 6 characters long!");
+    returnval = false;
+}
+
+var cpassword = document.forms['myForm']["fcpass"].value;
+if (cpassword != password){
+    serror("cpass", "*Password and Confirm password should match!");
+    returnval = false;
+}
+
+return returnval;
+}
+
+</script>
+
+</html>
